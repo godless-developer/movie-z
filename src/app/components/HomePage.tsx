@@ -7,7 +7,7 @@ import { Header } from "./Header";
 
 export const HomePage = () => {
   return (
-    <div className="text-white">
+    <div>
       <div className="flex flex-col items-center">
         <Header />
         <TitlesSeeMore name="Upcoming" />

@@ -1,14 +1,33 @@
+import { ModeToggle } from "@/components/theme-toggle";
+
 export const Header = () => {
   return (
-    <div className="flex w-[1280px] h-[59px] max-w-[1280px] justify-between items-center shrink-0 bg-black">
+    <div className="flex w-[1280px] h-[59px] max-w-[1280px] justify-between items-center shrink-0 ">
       <div className="cursor-pointer">
         <img src="./Logo.png" alt="" />
       </div>
-      <div className="flex justify-center items-center">
-        <button className="text-white w-[97px] h-[36px] p-[8px 16px justify-center items-center gap-2 ">
-          <p>Genre</p>
+      <div
+        className="flex justify-center 
+     gap-[10px] items-center"
+      >
+        <button className=" w-[97px] h-[38px] p-3 flex gap-1 justify-center items-center border-[0.1px] border-gray-600 rounded-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 -1 28 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chevron-down"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+          <p className="font-bold text-[14px]">Genre</p>
         </button>
-        <div className="flex justify-center items-center border-[2px] rounded-lg border-gray-700">
+        <div className="flex justify-center items-center border-[0.1px] rounded-lg border-gray-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="34"
@@ -33,9 +52,7 @@ export const Header = () => {
       </div>
       <div>
         <button>
-          <div className="w-[36px] h-[36px]">
-            <img className="w-[36px] h-[36px]" src="./Modes.png" alt="" />
-          </div>
+          <ModeToggle />
         </button>
       </div>
     </div>
