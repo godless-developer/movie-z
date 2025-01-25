@@ -24,7 +24,7 @@ export const PopularMovies = async () => {
             width={500}
             height={750}
           />
-          <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch  h-full">
+          <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch h-full">
             <div className="flex gap-[2px] items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

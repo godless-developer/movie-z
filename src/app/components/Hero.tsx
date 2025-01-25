@@ -1,6 +1,6 @@
 import { ConImg } from "../utils/constants";
 import { fetchData } from "./Genre";
-import { MovieType } from "../utils/types";
+import { MovieTypes } from "../utils/types";
 
 import {
   Carousel,
@@ -23,7 +23,7 @@ export const Hero = async () => {
           <CarouselContent>
             {heroMovies.results
               .slice(0, 10)
-              .map((movie: MovieType, index: number) => {
+              .map((movie: MovieTypes, index: number) => {
                 return (
                   <div key={index} className="">
                     <CarouselItem>
@@ -59,7 +59,6 @@ export const Hero = async () => {
                           <div className="text-[12px] leading-[16px] text-[#fafafa] w-[302px] mt-[16px] ">
                             {movie?.overview}
                           </div>
-
                           <Button
                             variant="outline"
                             className="py-2 px-4  rounded-md flex gap-2 h-10 mt-4  items-center "

@@ -10,7 +10,6 @@ export const HomePage = () => {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <Header />
         <Hero />
         <TitlesSeeMore name="Upcoming" />
         <UpComingMovies />
