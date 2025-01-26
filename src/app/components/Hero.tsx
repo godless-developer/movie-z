@@ -17,7 +17,7 @@ export const Hero = async () => {
   const heroMovies = await fetchData(hero);
 
   return (
-    <div>
+    <div className="mt-[0px]">
       <div className="  flex flex-wrap gap-6 justify-center mt-6 w-[100vw]">
         <Carousel className="w-full h-[600px]">
           <CarouselContent>
@@ -47,10 +47,24 @@ export const Hero = async () => {
                           <h1 className="text-[36px] text-[#fff] font-[700] leading-[40px] ">
                             {movie?.original_title}
                           </h1>
-                          <div className="flex">
-                            <img src="/star.svg" alt="" />
+                          <div className="flex items-center gap-1">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 28 28"
+                              fill="none"
+                            >
+                              <path
+                                d="M13.9999 2.33337L17.6049 9.63671L25.6666 10.815L19.8333 16.4967L21.2099 24.5234L13.9999 20.7317L6.78992 24.5234L8.16658 16.4967L2.33325 10.815L10.3949 9.63671L13.9999 2.33337Z"
+                                fill="yellow"
+                                stroke="yellow"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
                             <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">
-                              {movie?.vote_average}
+                              {movie?.vote_average.toFixed(1)}
                               <span className="text-[#71717A] font-[400] text-[16px] leading-[24px] ">
                                 /10
                               </span>

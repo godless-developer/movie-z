@@ -4,13 +4,13 @@ import { MovieTypes, Trailer } from "@/app/utils/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function page1({
-  params: { movieId },
+export default async function page4({
+  params: { moreId },
 }: {
-  params: { movieId: string };
+  params: { moreId: string };
 }) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+    `https://api.themoviedb.org/3/movie/${moreId}?language=en-US`,
     {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -19,7 +19,7 @@ export default async function page1({
     }
   );
   const responseStar = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
+    `https://api.themoviedb.org/3/movie/${moreId}/credits?language=en-US`,
     {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -28,7 +28,7 @@ export default async function page1({
     }
   );
   const responseTrailer = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+    `https://api.themoviedb.org/3/movie/${moreId}/videos?language=en-US`,
     {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -38,7 +38,7 @@ export default async function page1({
   );
 
   const MoreThisLike = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/movie/${moreId}/similar?language=en-US&page=1`,
     {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
@@ -208,7 +208,7 @@ export default async function page1({
             ?.slice(0, 5)
             .map((movie: MovieTypes, index: number) => {
               return (
-                <Link href={`/moreLike/${movie.id}`}>
+                <Link href={`/catagory/${moreId}`}>
                   <div
                     key={index}
                     className="rounded-[8px] overflow-hidden w-[230px] h-[400px] flex flex-col items-start cursor-pointer"
