@@ -1,10 +1,9 @@
 import Image from "next/image";
+import { TOKEN } from "../utils/constants";
 import Link from "next/link";
 import { MovieTypes } from "../utils/types";
-import { TOKEN } from "../utils/constants";
-import { BottomNews } from "../_components/BottomNews";
 
-export default async function upcoming() {
+export const UpComingMovies = async () => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
     {
@@ -17,16 +16,18 @@ export default async function upcoming() {
 
   const data = await response.json();
   console.log(data);
-
   return (
     <div>
       <div className="w-[1260px]">
         <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-start">
           <p className=" cursor-pointer text-[24px]">Upcoming</p>
+          <button>
+            <Link href={"/upcoming"}>See more</Link>
+          </button>
         </div>
       </div>
-      <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-full justify-center ">
-        {data.results.slice(0, 20).map((movie: MovieTypes, index: number) => {
+      <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-[910px] justify-center ">
+        {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => {
           return (
             <Link href={`/${movie.id}`} key={index}>
               <div
@@ -70,4 +71,4 @@ export default async function upcoming() {
       </div>
     </div>
   );
-}
+};

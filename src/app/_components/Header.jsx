@@ -1,6 +1,7 @@
 import { PopoverDemo } from "@/components/popoverb";
 import { ModeToggle } from "@/components/theme-toggle";
 import { InputDemo } from "@/components/ui/inputS";
+import InputS from "./Input";
 
 export const Header = () => {
   return (
@@ -45,7 +46,8 @@ export const Header = () => {
               />
             </g>
           </svg>
-          <InputDemo />
+          {/* <InputDemo /> */}
+          <InputS />
         </div>
       </div>
       <div>

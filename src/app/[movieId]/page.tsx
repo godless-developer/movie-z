@@ -1,6 +1,12 @@
-import { TitlesSeeMore } from "@/app/components/TitlesSeeMore";
 import { TOKEN } from "@/app/utils/constants";
 import { MovieTypes, Trailer } from "@/app/utils/types";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -46,6 +52,17 @@ export default async function page1({
       },
     }
   );
+
+  const trailers = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const comeTrailer = await trailers.json();
 
   const MoreThis = await MoreThisLike.json();
   console.log(MoreThis);
@@ -129,6 +146,38 @@ export default async function page1({
               }}
             >
               <div className="relative top-[00px] left-[100px]">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button
+                      className="absolute top-[350px] left-[-65px] rounded-full w-14 h-14"
+                      variant="outline"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polygon points="6 3 20 12 6 21 6 3" />
+                      </svg>
+                    </Button>
+                  </DialogTrigger>
+                  <DialogTitle>{comeTrailer.results[0].name}</DialogTitle>
+                  <DialogContent>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
+                      width={450}
+                      height={261}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </DialogContent>
+                </Dialog>
                 <p>{dataTrailer.name}</p>
                 {dataTrailer.results?.map((trailer: Trailer, index: string) => {
                   return <div key={index}>{/* <p>{trailer.size}</p> */}</div>;
@@ -176,7 +225,7 @@ export default async function page1({
               <p className="text-[16px] font-bold normal "> WRITERS</p>
               {dataStar.crew
                 ?.filter((crew: MovieTypes) => crew.department == "Directing")
-                .slice(0, 1)
+                .slice(0, 2)
                 .map((crew: MovieTypes, id: number) => {
                   return <div key={id}>{crew.name}</div>;
                 })}
@@ -202,16 +251,23 @@ export default async function page1({
           </div>
           <div className="w-full h-[1px] bg-gray-700"></div>
         </div>
-        <TitlesSeeMore name="More Like This" />
-        <div className="flex gap-4">
+        <div>
+          <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-start">
+            <p className=" cursor-pointer text-[24px]">More Like This</p>
+            <button>
+              <Link href={`/morelikethis/${movieId}`}>See more</Link>
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-4 w-full">
           {MoreThis.results
             ?.slice(0, 5)
             .map((movie: MovieTypes, index: number) => {
               return (
-                <Link href={`/moreLike/${movie.id}`}>
+                <Link href={`${movie.id}`}>
                   <div
                     key={index}
-                    className="rounded-[8px] overflow-hidden w-[230px] h-[400px] flex flex-col items-start cursor-pointer"
+                    className="rounded-[8px] overflow-hidden w-[205px] h-[410px] flex flex-col items-start cursor-pointer"
                   >
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
