@@ -2,6 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { TOKEN } from "@/app/utils/constants";
 import { MovieTypes } from "@/app/utils/types";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default async function ({
   params: { morelike },
@@ -21,11 +30,11 @@ export default async function ({
   const MoreThis = await MoreThisLike.json();
   console.log(MoreThis);
   return (
-    <div className="w-full flex flex-col items-center mt-8">
+    <div className=" flex flex-col items-center justify-center mt-8 w-[1260px]">
       <div className="w-[1090px] h-14 ">
         <p className="text-[24px]">More Like This</p>
       </div>
-      <div className="flex gap-4 flex-wrap w-[1090px]">
+      <div className="flex gap-5 ml-[70px] flex-wrap items-center justify-center w-full">
         {MoreThis.results
           ?.slice(0, 10)
           .map((movie: MovieTypes, index: number) => {
@@ -33,7 +42,7 @@ export default async function ({
               <Link href={`/${movie.id}`}>
                 <div
                   key={index}
-                  className="rounded-[8px] overflow-hidden w-[205px] h-[400px] flex flex-col items-start cursor-pointer"
+                  className="rounded-[8px] overflow-hidden w-[225px] h-[400px] flex flex-col items-start cursor-pointer"
                 >
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
@@ -70,6 +79,30 @@ export default async function ({
             );
           })}
       </div>
+      <Pagination className="ml-[475px] mt-10">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              1
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

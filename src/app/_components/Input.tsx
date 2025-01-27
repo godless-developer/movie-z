@@ -30,8 +30,8 @@ const SearchInput = () => {
     setSearchResults(searchData.results || []);
   };
   return (
-    <div className="relative w-[355px]">
-      <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground">
+    <div className="relative w-[381px]">
+      <div className="absolute left-2.5 top-[10px] h-4 w-4 text-muted-foreground">
         <SearchIcon className="h-4 w-4" />
       </div>
       <Input
@@ -40,48 +40,59 @@ const SearchInput = () => {
         placeholder="Search..."
         value={searchValue}
         onChange={searchHandler}
-        className="w-full rounded-lg bg-background pl-8"
+        className="w-full h-[38px] rounded-lg bg-background py-3 pl-8 focus:outline-hidden flex items-center pt-3"
       />
 
       {searchResults.length > 0 ? (
-        <div className="absolute mt-4 z-10 bg-white p-8 flex flex-col gap-[10px] w-[553px] ">
+        <div className="w-[577px] flex p-3 flex-col items-start rounded-[8px] border-[1px] border-[#27272a] bg-[#09090B] opacity-95 absolute z-50  mt-2 ml-[-145px]">
           {searchResults?.slice(0, 5).map((movie: MovieTypes) => (
-            <div className="flex flex-col gap-3">
-              <Link href={`/catagory/${movie?.id}`}>
-                <div className="flex gap-4 w-full h-[110px] p-2 items-center hover:bg-[#f5f5f5] rounded-lg overflow-hidden">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                    width={67}
-                    height={100}
-                    alt=""
-                    className="rounded-lg"
-                  />
-                  <div className="w-full">
-                    <h2 className="font-bold text-[20px]">
-                      {movie?.original_title}
-                    </h2>
-                    <div className="flex items-center">
-                      <img src="/star2.svg" alt="" />
-                      <div className="flex text-[14px] items-center">
-                        <p className="font-semibold">
-                          {movie?.vote_average.toFixed(1)}
-                        </p>
-                        <p className="text-[12px] text-[#71717A]">/10</p>
-                      </div>
+            <Link href={`/${movie?.id}`}>
+              <div className="flex items-start self-stretch p-2 gap-4 rounded-[8px] hover:bg-gray-700 w-[550px]">
+                <Image
+                  src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                  width={67}
+                  height={100}
+                  alt=""
+                  className="rounded-[6px] cursor-pointer"
+                />
+                <div className="flex flex-col items-start gap-4 w-[100%]">
+                  <h2 className="font-bold text-[20px]">
+                    {movie?.original_title}
+                  </h2>
+                  <div className="flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M7.99992 1.33325L10.0599 5.50659L14.6666 6.17992L11.3333 9.42659L12.1199 14.0133L7.99992 11.8466L3.87992 14.0133L4.66658 9.42659L1.33325 6.17992L5.93992 5.50659L7.99992 1.33325Z"
+                        fill="yellow"
+                        stroke="yellow"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <div className="flex text-[14px] items-center">
+                      <p className="font-semibold">
+                        {movie?.vote_average.toFixed(1)}
+                      </p>
+                      <p className="text-[12px] text-[#71717A]">/10</p>
                     </div>
-                    <div className="flex justify-between">
-                      <p>{movie?.release_date}</p>
-                      <div className="flex items-center gap-2">
-                        <p className="hover:underline">See more</p>
-                        <ArrowRight className="w-[16px]" />
-                      </div>
+                  </div>
+                  <div className="flex justify-between w-[100%]">
+                    <p>{movie?.release_date}</p>
+                    <div className="flex items-center gap-2 cursor-pointer pr-5">
+                      <p className="hover:underline text-[14px]">See more</p>
+                      <ArrowRight className="w-[16px]" />
                     </div>
                   </div>
                 </div>
-              </Link>
-
-              <hr className="border-b-2" />
-            </div>
+              </div>
+              <div className="w-[550px] h-[1.5px] my-1 bg-gray-700"></div>
+            </Link>
           ))}
           <div>See all results for "{searchValue}"</div>
         </div>

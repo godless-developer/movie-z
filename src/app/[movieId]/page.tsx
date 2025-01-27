@@ -88,7 +88,7 @@ export default async function page1({
   return (
     <div className="w-[1080px]">
       <div className="mt-8">
-        <div className="flex justify-between">
+        <div className="flex justify-between p-1 mr-6">
           <div>
             <h1 className="text-[36px] normal font-bold">
               {data.original_title}
@@ -102,14 +102,12 @@ export default async function page1({
             </div>
           </div>
           <div>
-            <p className="text-[12px] normal font-medium font-[Inter] ">
-              Rating
-            </p>
-            <div className="flex">
+            <p className="text-[16px] normal font-medium ">Rating</p>
+            <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
+                width="20"
+                height="20"
                 viewBox="0 0 28 28"
                 fill="none"
               >
@@ -134,10 +132,10 @@ export default async function page1({
             src={"https://image.tmdb.org/t/p/w500" + data.poster_path}
             alt=""
           />
-          <div className="w-[760px] h-[428px] bg-cover bg-center bg-no-repeat rounded-sm relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.4)] to-[rgba(0,0,0,0.4)]"></div>
+          <div className="w-[760px] h-[428px] bg-cover bg-center bg-no-repeat rounded-sm relative ">
+            <div className="absolute inset-0 "></div>
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 bg-black opacity-55 top-[0px] left-[0px] z-10"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original${data?.poster_path})`,
                 backgroundSize: "cover",
@@ -145,32 +143,36 @@ export default async function page1({
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <div className="relative top-[00px] left-[100px]">
+              <div className="relative top-[20px] left-[20px]">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button
-                      className="absolute top-[350px] left-[-65px] rounded-full w-14 h-14"
-                      variant="outline"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                    <div className="cursor-pointer">
+                      <Button
+                        className="absolute top-[330px] left-[5px] rounded-full w-14 h-14 z-20"
+                        variant="outline"
                       >
-                        <polygon points="6 3 20 12 6 21 6 3" />
-                      </svg>
-                    </Button>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <polygon points="6 3 20 12 6 21 6 3" />
+                        </svg>
+                      </Button>
+                      <p className="top-[340px] absolute left-[75px] text-white font-semibold text-[21px]">
+                        Play Trailer
+                      </p>
+                    </div>
                   </DialogTrigger>
-                  <DialogTitle>{comeTrailer.results[0].name}</DialogTitle>
                   <DialogContent>
                     <iframe
-                      src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
+                      src={`https://www.youtube.com/embed/${comeTrailer.results[0]}`}
                       width={450}
                       height={261}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -252,10 +254,24 @@ export default async function page1({
           <div className="w-full h-[1px] bg-gray-700"></div>
         </div>
         <div>
-          <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-start">
+          <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-center">
             <p className=" cursor-pointer text-[24px]">More Like This</p>
-            <button>
+            <button className="flex items-center justify-center gap-2">
               <Link href={`/morelikethis/${movieId}`}>See more</Link>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>

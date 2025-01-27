@@ -3,6 +3,15 @@ import Link from "next/link";
 import { MovieTypes } from "../utils/types";
 import { TOKEN } from "../utils/constants";
 import { BottomNews } from "../_components/BottomNews";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default async function upcoming() {
   const response = await fetch(
@@ -26,7 +35,7 @@ export default async function upcoming() {
         </div>
       </div>
       <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-full justify-center ">
-        {data.results.slice(0, 20).map((movie: MovieTypes, index: number) => {
+        {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => {
           return (
             <Link href={`/${movie.id}`} key={index}>
               <div
@@ -68,6 +77,30 @@ export default async function upcoming() {
           );
         })}
       </div>
+      <Pagination className="ml-[470px] mt-10">
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }
