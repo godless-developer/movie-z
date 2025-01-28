@@ -40,8 +40,8 @@ export async function PopoverDemo() {
             <path
               d="M4 6.5L8 10.5L12 6.5"
               stroke="#FAFAFA"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
           <p className="text-[14px] normal font-medium text-20px">Genre</p>
@@ -56,7 +56,7 @@ export async function PopoverDemo() {
           <div className="flex flex-wrap gap-[18px]">
             {data.genres?.map((movie: Genres, index: number) => {
               return (
-                <Link href={`/genres`}>
+                <Link href={`/genres/${movie.id}/`}>
                   <button
                     key={index}
                     className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold"
@@ -69,9 +69,9 @@ export async function PopoverDemo() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
                       <path d="m9 18 6-6-6-6" />
                     </svg>

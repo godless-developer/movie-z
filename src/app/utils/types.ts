@@ -11,6 +11,7 @@ export type MovieTypes = {
   popularity: number;
   poster_path: string;
   release_date: string;
+  total_results: number;
   title: string;
   video: boolean;
   vote_average: number;
@@ -22,6 +23,7 @@ export type MovieTypes = {
 export type Genres = {
   name: string;
   id: number;
+  total_results: number;
 };
 export type Trailer = {
   name: string;

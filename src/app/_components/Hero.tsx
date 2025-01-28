@@ -38,11 +38,11 @@ export const Hero = async () => {
               .slice(0, 10)
               .map((movie: MovieTypes, index: number) => {
                 return (
-                  <div key={index} className="">
+                  <div key={index}>
                     <CarouselItem className="relative">
                       <Link href={`/${movie.id}`}>
                         <div
-                          className="w-[100vw] h-[600px] relative "
+                          className="w-[100vw] h-[600px] relative"
                           style={{
                             backgroundImage: `url(${
                               ConImg + "original" + movie?.backdrop_path
@@ -73,8 +73,8 @@ export const Hero = async () => {
                                   d="M13.9999 2.33337L17.6049 9.63671L25.6666 10.815L19.8333 16.4967L21.2099 24.5234L13.9999 20.7317L6.78992 24.5234L8.16658 16.4967L2.33325 10.815L10.3949 9.63671L13.9999 2.33337Z"
                                   fill="yellow"
                                   stroke="yellow"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                 />
                               </svg>
                               <h3 className="text-[18px] font-[600] leading-[28px] text-[#fafafa] ">

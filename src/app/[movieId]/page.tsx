@@ -115,8 +115,8 @@ export default async function page1({
                   d="M13.9997 2.33325L17.6047 9.63659L25.6663 10.8149L19.833 16.4966L21.2097 24.5233L13.9997 20.7316L6.78967 24.5233L8.16634 16.4966L2.33301 10.8149L10.3947 9.63659L13.9997 2.33325Z"
                   fill="#FDE047"
                   stroke="#FDE047"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
               <p>
@@ -158,9 +158,9 @@ export default async function page1({
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
                           <polygon points="6 3 20 12 6 21 6 3" />
                         </svg>
@@ -170,14 +170,16 @@ export default async function page1({
                       </p>
                     </div>
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="max-w-[997px] max-h-[563px]">
                     <iframe
-                      src={`https://www.youtube.com/embed/${comeTrailer.results[0]}`}
-                      width={450}
-                      height={261}
+                      src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
+                      width={997}
+                      height={561}
+                      className="overflow-hidden rounded-[5px] mb-[10px]"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     ></iframe>
+                    <DialogTitle hidden></DialogTitle>
                   </DialogContent>
                 </Dialog>
                 <p>{dataTrailer.name}</p>
@@ -265,9 +267,9 @@ export default async function page1({
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <path d="M5 12h14" />
                 <path d="m12 5 7 7-7 7" />
@@ -304,8 +306,8 @@ export default async function page1({
                             d="M7.99992 1.33325L10.0599 5.50659L14.6666 6.17992L11.3333 9.42659L12.1199 14.0133L7.99992 11.8466L3.87992 14.0133L4.66658 9.42659L1.33325 6.17992L5.93992 5.50659L7.99992 1.33325Z"
                             fill="yellow"
                             stroke="yellow"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                         <p>
