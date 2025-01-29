@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="flex flex-col items-center">
+      <body className="flex flex-col items-center mt-[80px]">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -36,8 +36,8 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <BottomNews />
         </ThemeProvider>
-        <BottomNews />
       </body>
       <link rel="icon" href="./public/favicon.ico" />
     </html>

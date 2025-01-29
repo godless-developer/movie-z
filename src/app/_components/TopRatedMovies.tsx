@@ -43,7 +43,7 @@ export const TopRatedMovies = async () => {
       <div className=" mx-auto  flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-[910px] ">
         {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => {
           return (
-            <Link href={`/${movie.id}/page`} key={index}>
+            <Link href={`/${movie.id}/`} key={index}>
               <div
                 key={index}
                 className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer"
@@ -54,7 +54,7 @@ export const TopRatedMovies = async () => {
                   width={500}
                   height={650}
                 />
-                <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch  h-full">
+                <div className="bg-secondary flex p-2 flex-col items-start self-stretch  h-full">
                   <div className="flex items-center gap-[2px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

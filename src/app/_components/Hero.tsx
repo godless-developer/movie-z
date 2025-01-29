@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 export const Hero = async () => {
   const hero = "/movie/now_playing?language=en-US&page=1";
@@ -28,7 +29,6 @@ export const Hero = async () => {
     }
   );
   const comeTrailer = await response.json();
-
   return (
     <div className="mt-[0px]">
       <div className="  flex flex-wrap gap-6 justify-center mt-6 w-[100vw]">
@@ -99,6 +99,7 @@ export const Hero = async () => {
                             watch trailer
                           </Button>
                         </DialogTrigger>
+                        <DialogTitle hidden></DialogTitle>
                         <DialogContent>
                           <iframe
                             src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}

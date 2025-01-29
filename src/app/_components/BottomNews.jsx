@@ -1,6 +1,6 @@
 export const BottomNews = () => {
   return (
-    <div className="w-[100vw]  mt-[60px] h-[280px] pt-14 pb-10 bg-[#4338ca] flex items-start justify-center">
+    <div className="w-[100vw]  mt-[60px] h-[280px] pt-14 pb-10 bg-[#4338ca] flex items-start justify-center text-white">
       <div className="w-full flex justify-around items-start">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 ">

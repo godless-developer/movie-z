@@ -102,7 +102,7 @@ export default async function page1({
             </div>
           </div>
           <div>
-            <p className="text-[16px] normal font-medium ">Rating</p>
+            <p className="text-[20px] normal font-medium ">Rating</p>
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ export default async function page1({
               </svg>
               <p>
                 {formatVoteAverage2(data.vote_average)}
-                <span className="text-[#71717a] text-[12px]">/10</span>
+                <span className="text-[#71717a] text-[13px]">/10</span>
               </p>
             </div>
           </div>
@@ -293,7 +293,7 @@ export default async function page1({
                       width={500}
                       height={750}
                     />
-                    <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch h-full">
+                    <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
                       <div className="flex items-center gap-[2px]">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

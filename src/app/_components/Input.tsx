@@ -43,10 +43,10 @@ const SearchInput = () => {
       />
 
       {searchResults.length > 0 ? (
-        <div className="w-[577px] flex p-3 flex-col items-start rounded-[8px] border-[1px] border-[#27272a] bg-[#09090B] opacity-95 absolute z-50  mt-2 ml-[-145px]">
+        <div className="w-[577px] flex p-3 flex-col items-start rounded-[8px] border-[1px] border-[#27272a] bg-secondary opacity-95 absolute z-50  mt-2 ml-[-145px]">
           {searchResults?.slice(0, 5).map((movie: MovieTypes) => (
             <Link href={`/${movie?.id}`}>
-              <div className="flex items-start self-stretch p-2 gap-4 rounded-[8px] hover:bg-gray-700 w-[550px]">
+              <div className="flex items-start self-stretch p-2 gap-4 rounded-[8px] hover:bg-gray-500 transition-all ease-in-out w-[550px]">
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                   width={67}
@@ -93,9 +93,11 @@ const SearchInput = () => {
               <div className="w-[550px] h-[1.5px] my-1 bg-gray-700"></div>
             </Link>
           ))}
-          <div>See all results for "{searchValue}"</div>
+          <Link href={`/inputgenres/${searchValue}`}>
+            <div>See all results for "{searchValue}"</div>
+          </Link>
         </div>
-      ) : searchValue.length > 1 && searchResults.length == 0 ? (
+      ) : searchValue.length > 1 && searchResults.length === 0 ? (
         <div className="absolute mt-4 z-10 bg-white p-8">
           <p>"Not Found"</p>
         </div>

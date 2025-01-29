@@ -50,7 +50,7 @@ export default async function ({
                     width={500}
                     height={750}
                   />
-                  <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch h-full">
+                  <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
                     <div className="flex items-center gap-[2px]">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
