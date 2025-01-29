@@ -98,7 +98,7 @@ const SearchInput = () => {
           </Link>
         </div>
       ) : searchValue.length > 1 && searchResults.length === 0 ? (
-        <div className="absolute mt-4 z-10 bg-white p-8">
+        <div className="absolute mt-4 z-10 bg-secondary w-[400px] rounded-lg border-[1px] flex justify-center text-[13px] text-red-500 p-8">
           <p>"Not Found"</p>
         </div>
       ) : (
