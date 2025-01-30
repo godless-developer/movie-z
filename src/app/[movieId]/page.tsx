@@ -127,9 +127,10 @@ export default async function page1({
           </div>
         </div>
         <div className="flex gap-4">
-          <img
-            className="w-[290px] h-[428px]"
+          <Image
             src={"https://image.tmdb.org/t/p/w500" + data.poster_path}
+            width={280}
+            height={400}
             alt=""
           />
           <div className="w-[760px] h-[428px] bg-cover bg-center bg-no-repeat rounded-sm relative ">
@@ -282,11 +283,8 @@ export default async function page1({
             ?.slice(0, 5)
             .map((movie: MovieTypes, index: number) => {
               return (
-                <Link href={`${movie.id}`}>
-                  <div
-                    key={index}
-                    className="rounded-[8px] overflow-hidden w-[205px] h-[410px] flex flex-col items-start cursor-pointer"
-                  >
+                <Link key={index} href={`${movie.id}`}>
+                  <div className="rounded-[8px] overflow-hidden w-[205px] h-[410px] flex flex-col items-start cursor-pointer">
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                       alt={`Poster of ${movie?.original_title}`}

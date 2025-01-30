@@ -82,7 +82,7 @@ export function PopoverDemo() {
             ) : (
               genres?.map((movie, index) => (
                 <Link
-                  key={movie.id}
+                  key={index}
                   onClick={() => setOpen(false)} // Close popover when genre is selected
                   href={`/genres/${movie.id}/`}
                 >

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { MovieTypes } from "../utils/types";
 import Image from "next/image";
 import { TOKEN } from "../utils/constants";
-import { PaginationDemo } from "../_components/Pagination";
 import {
   Pagination,
   PaginationContent,
@@ -13,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default async function () {
+export async function page6() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
     {
@@ -35,11 +34,8 @@ export default async function () {
       </div>
       <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-full">
         {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => (
-          <Link href={`/${movie.id}`}>
-            <div
-              key={index}
-              className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer"
-            >
+          <Link key={index} href={`/${movie.id}`}>
+            <div className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer">
               <Image
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                 alt={`Poster of ${movie?.original_title}`}

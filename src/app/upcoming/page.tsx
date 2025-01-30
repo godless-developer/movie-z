@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { MovieTypes } from "../utils/types";
 import { TOKEN } from "../utils/constants";
-import { BottomNews } from "../_components/BottomNews";
 import {
   Pagination,
   PaginationContent,

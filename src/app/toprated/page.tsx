@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default async function () {
+export async function page7() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
     {
@@ -35,10 +35,7 @@ export default async function () {
         {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => {
           return (
             <Link href={`/${movie.id}/page`} key={index}>
-              <div
-                key={index}
-                className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer"
-              >
+              <div className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer">
                 <Image
                   src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                   alt={`Poster of ${movie?.original_title}`}

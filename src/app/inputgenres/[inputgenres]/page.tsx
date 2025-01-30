@@ -4,7 +4,7 @@ import { Pagination } from "@/components/ui/pagination";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function ({
+export async function page3({
   params: { inputgenres },
 }: {
   params: { inputgenres: string };
@@ -41,18 +41,17 @@ export default async function ({
         <div className="flex items-start self-stretch gap-1">
           <div className="w-[806px] flex flex-col items-start gap-8">
             <p className="flex flex-col items-start gap-8 text-[20px]">
-              {dataAllgenres.total_results} results for "{inputgenres}"
+              {dataAllgenres.total_results}
+              <p>results for</p>&quot;
+              {inputgenres}&quot;
             </p>
             <div className="w-[806px] h-full flex flex-wrap items-start self-stretch gap-8">
               {dataAllgenres.results
                 .slice(0, 20)
                 .map((movie: MovieTypes, index: number) => {
                   return (
-                    <Link href={`/${movie.id}`}>
-                      <div
-                        key={index}
-                        className="rounded-[8px] overflow-hidden w-[165px] h-[340px] flex flex-col items-start cursor-pointer"
-                      >
+                    <Link key={index} href={`/${movie.id}`}>
+                      <div className="rounded-[8px] overflow-hidden w-[165px] h-[340px] flex flex-col items-start cursor-pointer">
                         <Image
                           src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                           alt={`Poster of ${movie?.original_title}`}

@@ -1,11 +1,11 @@
 import { TOKEN } from "@/app/utils/constants";
-import { Genres, MovieTypes } from "@/app/utils/types";
+import { MovieTypes } from "@/app/utils/types";
 import { Pagination } from "@/components/ui/pagination";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function ({
+export async function page1({
   params: { genresId },
 }: {
   params: { genresId: string };
@@ -51,6 +51,7 @@ export default async function ({
               {datagenres.genres.map((movie: MovieTypes, index: number) => {
                 return (
                   <ToggleGroup
+                    key={index}
                     type="single"
                     className=" rounded-lg border-[1px] h-[22px] font-normal text-[14px] flex gap-1 items-center cursor-pointer text-secondary-foreground"
                   >
@@ -86,11 +87,8 @@ export default async function ({
                 .slice(0, 20)
                 .map((movie: MovieTypes, index: number) => {
                   return (
-                    <Link href={`/${movie.id}`}>
-                      <div
-                        key={index}
-                        className="rounded-[8px] overflow-hidden w-[165px] h-[330px] flex flex-col items-start cursor-pointer"
-                      >
+                    <Link key={index} href={`/${movie.id}`}>
+                      <div className="rounded-[8px] overflow-hidden w-[165px] h-[330px] flex flex-col items-start cursor-pointer">
                         <Image
                           src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                           alt={`Poster of ${movie?.original_title}`}

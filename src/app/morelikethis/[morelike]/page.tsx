@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default async function ({
+export async function page5({
   params: { morelike },
 }: {
   params: { morelike: string };
@@ -39,11 +39,8 @@ export default async function ({
           ?.slice(0, 10)
           .map((movie: MovieTypes, index: number) => {
             return (
-              <Link href={`/${movie.id}`}>
-                <div
-                  key={index}
-                  className="rounded-[8px] overflow-hidden w-[225px] h-[400px] flex flex-col items-start cursor-pointer"
-                >
+              <Link key={index} href={`/${movie.id}`}>
+                <div className="rounded-[8px] overflow-hidden w-[225px] h-[400px] flex flex-col items-start cursor-pointer">
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                     alt={`Poster of ${movie?.original_title}`}

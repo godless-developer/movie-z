@@ -1,3 +1,3 @@
-export default async function () {
+export async function page4() {
   return <div>inputgenres</div>;
 }

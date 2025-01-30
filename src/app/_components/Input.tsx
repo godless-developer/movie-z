@@ -101,12 +101,18 @@ const SearchInput = () => {
               </Link>
             ))}
           <Link href={`/inputgenres/${searchValue}`}>
-            <div onClick={clearInput}>See all results for "{searchValue}"</div>
+            <div
+              onClick={clearInput}
+              className="flex justify-center items-center gap-3"
+            >
+              <p>See all results for</p>
+              {searchValue}
+            </div>
           </Link>
         </div>
       ) : searchValue.length > 1 && searchResults.length === 0 ? (
         <div className="absolute mt-4 z-10 bg-secondary w-[400px] rounded-lg border-[1px] flex justify-center text-[13px] text-red-500 p-8">
-          <p>"Not Found"</p>
+          <p>&quot;Not Found&quot;</p>
         </div>
       ) : (
         ""
