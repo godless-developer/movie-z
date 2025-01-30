@@ -5,7 +5,7 @@ import InputS from "./Input";
 
 export const Header = () => {
   return (
-    <div className="top-[0] z-50 fixed bg-secondary w-[100vw] flex justify-center">
+    <div className="top-[0] z-50 fixed bg-background w-[100vw] flex justify-center">
       <div className="flex w-[1408px] ml-20 px-4 justify-between items-center flex-shrink-0 h-[59px]  ">
         <div className="w-[1280px] h-[36px] max-w-[1280px] flex justify-between items-center flex-shrink-0">
           <div className="flex gap-2 items-center w-[92px] h-5 cursor-pointer">

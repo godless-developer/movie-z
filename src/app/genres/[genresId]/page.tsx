@@ -1,6 +1,7 @@
 import { TOKEN } from "@/app/utils/constants";
 import { Genres, MovieTypes } from "@/app/utils/types";
 import { Pagination } from "@/components/ui/pagination";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -49,29 +50,37 @@ export default async function ({
             <div className="w-[387px] flex items-start content-start gap-4 self-stretch flex-wrap">
               {datagenres.genres.map((movie: MovieTypes, index: number) => {
                 return (
-                  <div className="px-2 rounded-lg border-[1px] font-normal text-[14px] flex gap-1 items-center cursor-pointer text-secondary-foreground">
-                    <p>{movie.name}</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m9 18 6-6-6-6" />
-                    </svg>
-                  </div>
+                  <ToggleGroup
+                    type="single"
+                    className=" rounded-lg border-[1px] h-[22px] font-normal text-[14px] flex gap-1 items-center cursor-pointer text-secondary-foreground"
+                  >
+                    <ToggleGroupItem value="a" className="h-[20px]">
+                      <p>{movie.name}</p>{" "}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="m9 18 6-6-6-6" />
+                      </svg>
+                    </ToggleGroupItem>
+                  </ToggleGroup>
                 );
               })}
             </div>
           </div>
           <div className="w-[2px] h-[1830px] flex flex-col py-4 gap-[10px] self-stretch ml-8 mr-4 bg-secondary"></div>
           <div className="w-[806px] flex flex-col items-start gap-8 h-full">
-            <p className="flex flex-col items-start gap-8">title</p>
+            <p className="flex  items-start gap-2 text-[20px] font-medium ">
+              {dataAllgenres.total_results}
+              <p>titles</p>
+            </p>
             <div className="w-[806px] h-full flex flex-wrap items-start self-stretch gap-8">
               {dataAllgenres.results
                 .slice(0, 20)

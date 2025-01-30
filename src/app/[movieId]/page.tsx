@@ -172,7 +172,7 @@ export default async function page1({
                   </DialogTrigger>
                   <DialogContent className="max-w-[997px] max-h-[563px]">
                     <iframe
-                      src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
+                      src={`https://www.youtube.com/embed/${comeTrailer.results[0]?.key}`}
                       width={997}
                       height={561}
                       className="overflow-hidden rounded-[5px] mb-[10px]"
