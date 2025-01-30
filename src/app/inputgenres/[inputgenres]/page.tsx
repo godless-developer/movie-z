@@ -4,7 +4,7 @@ import { Pagination } from "@/components/ui/pagination";
 import Image from "next/image";
 import Link from "next/link";
 
-export async function page3({
+export default async function page3({
   params: { inputgenres },
 }: {
   params: { inputgenres: string };
@@ -39,12 +39,12 @@ export async function page3({
           Search filter
         </p>
         <div className="flex items-start self-stretch gap-1">
-          <div className="w-[806px] flex flex-col items-start gap-8">
-            <p className="flex flex-col items-start gap-8 text-[20px]">
+          <div className="w-[806px] flex flex-col items-start gap-4">
+            <h1 className="flex items-start gap-2 text-[20px]">
               {dataAllgenres.total_results}
               <p>results for</p>&quot;
               {inputgenres}&quot;
-            </p>
+            </h1>
             <div className="w-[806px] h-full flex flex-wrap items-start self-stretch gap-8">
               {dataAllgenres.results
                 .slice(0, 20)

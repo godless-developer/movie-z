@@ -1,38 +1,80 @@
-import { TOKEN } from "@/app/utils/constants";
-import { MovieTypes } from "@/app/utils/types";
-import { Pagination } from "@/components/ui/pagination";
+"use client";
+import React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import Image from "next/image";
+import { GenreType, PageType } from "@/app/utils/types";
 import Link from "next/link";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "@/components/ui/pagination";
+import { TOKEN } from "@/app/utils/constants";
 
-export async function page1({
-  params: { genresId },
-}: {
-  params: { genresId: string };
-}) {
-  const genresData = await fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?language=en`,
-    {
-      headers: {
-        Authorization: `bearer  ${TOKEN}`,
-        "Content-type": "application/json",
-      },
-    }
-  );
-  const datagenres = await genresData.json();
-  console.log(datagenres);
+export default function ToggleGroupDemo() {
+  const [movies, setMovies] = React.useState<{
+    page: number;
+    total_results: number;
+    results: PageType[];
+    total_pages: number;
+  } | null>(null);
+  const [genres, setGenres] = React.useState<GenreType[]>([]);
 
-  const genresAllData = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genresId}&page=1`,
-    {
-      headers: {
-        Authorization: `bearer  ${TOKEN}`,
-        "Content-type": "application/json",
-      },
-    }
-  );
-  const dataAllgenres = await genresAllData.json();
-  console.log(dataAllgenres);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const page = Number(searchParams.get("page") || "1");
+  const genreIds = searchParams.get("genreIds");
+
+  React.useEffect(() => {
+    const getDatas = async () => {
+      const datas = await fetch(
+        `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genreIds}&page=${page}`,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await datas.json();
+      setMovies(data || []);
+      console.log("Movies:", data);
+    };
+    getDatas();
+  }, [genreIds, page]);
+
+  React.useEffect(() => {
+    const getDatass = async () => {
+      const responses = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?language=en`,
+        {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const dataGenre = await responses.json();
+      setGenres(dataGenre.genres || []);
+      // console.log("Genres:", dataGenre);
+    };
+    getDatass();
+  }, []);
+
+  const clickHandler = (newGenreIds: string[]) => {
+    console.log("newGenre", newGenreIds);
+    router.push(`?page=${page}&genreIds=${newGenreIds}`);
+  };
+
+  // const totalPage = movies?.total_pages || 0;
+
   return (
     <div className="w-[1440px] h-full flex flex-col items-center  mt-5">
       <div className="w-[1280px] h-full flex flex-col items-start gap-8">
@@ -47,86 +89,91 @@ export async function page1({
                 See lists of movies by genre
               </p>
             </div>
-            <div className="w-[387px] flex items-start content-start gap-4 self-stretch flex-wrap">
-              {datagenres.genres.map((movie: MovieTypes, index: number) => {
-                return (
-                  <ToggleGroup
-                    key={index}
-                    type="single"
-                    className=" rounded-lg border-[1px] h-[22px] font-normal text-[14px] flex gap-1 items-center cursor-pointer text-secondary-foreground"
+            <ToggleGroup
+              onValueChange={clickHandler}
+              type="multiple"
+              className="flex flex-wrap justify-start mt-[20px] gap-[16px]"
+            >
+              {genres?.map((genre: GenreType, index: number) => (
+                <ToggleGroupItem
+                  key={index}
+                  value={genre.id.toString()}
+                  aria-label="Toggle bold"
+                  variant={"outline"}
+                  className="h-auto rounded-full text-[12px] px-[10px]"
+                >
+                  {genre.name}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
-                    <ToggleGroupItem value="a" className="h-[20px]">
-                      <p>{movie.name}</p>{" "}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="m9 18 6-6-6-6" />
-                      </svg>
-                    </ToggleGroupItem>
-                  </ToggleGroup>
-                );
-              })}
-            </div>
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
           </div>
           <div className="w-[2px] h-[1830px] flex flex-col py-4 gap-[10px] self-stretch ml-8 mr-4 bg-secondary"></div>
           <div className="w-[806px] flex flex-col items-start gap-8 h-full">
-            <p className="flex  items-start gap-2 text-[20px] font-medium ">
-              {dataAllgenres.total_results}
-              <p>titles</p>
-            </p>
+            <h1 className="flex  items-start gap-2 text-[20px] font-medium ">
+              {movies?.total_results}
+              titles in{" "}
+              {/* {genres
+                .filter((genre: GenreType) => genre.id.toString() == genreIds)
+                .map((genre: GenreType, index: number) => (
+                  <p key={index}>{genre.name}</p>
+                ))} */}
+            </h1>
             <div className="w-[806px] h-full flex flex-wrap items-start self-stretch gap-8">
-              {dataAllgenres.results
-                .slice(0, 20)
-                .map((movie: MovieTypes, index: number) => {
-                  return (
-                    <Link key={index} href={`/${movie.id}`}>
-                      <div className="rounded-[8px] overflow-hidden w-[165px] h-[330px] flex flex-col items-start cursor-pointer">
-                        <Image
-                          src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                          alt={`Poster of ${movie?.original_title}`}
-                          width={500}
-                          height={750}
-                        />
-                        <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
-                          <div className="flex gap-[2px] items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                              fill="none"
-                            >
-                              <path
-                                d="M7.99992 1.33325L10.0599 5.50659L14.6666 6.17992L11.3333 9.42659L12.1199 14.0133L7.99992 11.8466L3.87992 14.0133L4.66658 9.42659L1.33325 6.17992L5.93992 5.50659L7.99992 1.33325Z"
-                                fill="yellow"
-                                stroke="yellow"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                            <p>
-                              {movie?.vote_average.toFixed(1)}
-                              <span className="text-[#71717a] text-[12px]">
-                                /10
-                              </span>
-                            </p>
-                          </div>
-                          <p>{movie?.original_title}</p>
+              {movies?.results.map((movie: PageType, index: number) => {
+                return (
+                  <Link key={index} href={`/${movie.id}`}>
+                    <div className="rounded-[8px] overflow-hidden w-[165px] h-[330px] flex flex-col items-start cursor-pointer">
+                      <Image
+                        src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                        alt={`Poster of ${movie?.original_title}`}
+                        width={500}
+                        height={750}
+                      />
+                      <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
+                        <div className="flex gap-[2px] items-center">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                          >
+                            <path
+                              d="M7.99992 1.33325L10.0599 5.50659L14.6666 6.17992L11.3333 9.42659L12.1199 14.0133L7.99992 11.8466L3.87992 14.0133L4.66658 9.42659L1.33325 6.17992L5.93992 5.50659L7.99992 1.33325Z"
+                              fill="yellow"
+                              stroke="yellow"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          <p>
+                            {movie?.vote_average.toFixed(1)}
+                            <span className="text-[#71717a] text-[12px]">
+                              /10
+                            </span>
+                          </p>
                         </div>
+                        <p>{movie?.original_title}</p>
                       </div>
-                    </Link>
-                  );
-                })}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
-            <Pagination />
+            {/* <Pagination /> */}
           </div>
         </div>
       </div>

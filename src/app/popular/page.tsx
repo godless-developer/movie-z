@@ -12,7 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export async function page6() {
+export default async function page6() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/popular?language=en-US&page=1`,
     {
