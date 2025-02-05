@@ -9,10 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./carousel";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { TrailerDialog } from "./TrailerDialog";
 
 export const Hero = async () => {
   const hero = "/movie/now_playing?language=en-US&page=1";
@@ -90,27 +88,7 @@ export const Hero = async () => {
                           </div>
                         </div>
                       </Link>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            className="absolute top-[400px] left-[155px]"
-                            variant="outline"
-                          >
-                            watch trailer
-                          </Button>
-                        </DialogTrigger>
-                        <DialogTitle hidden></DialogTitle>
-                        <DialogContent>
-                          <iframe
-                            src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
-                            width={450}
-                            height={261}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            title={comeTrailer.results[0].name}
-                            allowFullScreen
-                          ></iframe>
-                        </DialogContent>
-                      </Dialog>
+                      <TrailerDialog movieId={movie.id} />
                     </CarouselItem>
                   </div>
                 );

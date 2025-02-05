@@ -86,7 +86,7 @@ export default async function page1({
   console.log(dataStar);
 
   return (
-    <div className="w-[1080px]">
+    <div className="w-[1080px] z-10">
       <div className="mt-8">
         <div className="flex justify-between p-1 mr-6">
           <div>

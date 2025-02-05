@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "./_components/Header";
 import { BottomNews } from "./_components/BottomNews";
+import { Hi } from "./_components/Hi";
 
 export const metadata: Metadata = {
   title: "TUKA.COM",
@@ -24,6 +25,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
+          <Hi />
           {children}
           <BottomNews />
         </ThemeProvider>

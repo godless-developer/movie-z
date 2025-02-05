@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import Fetchdata from "../utils/inputData";
 import { MovieTypes } from "../utils/types";
+import "./hi.css";
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -53,7 +54,7 @@ const SearchInput = () => {
             ?.slice(0, 5)
             .map((movie: MovieTypes, index: number) => (
               <Link key={index} onClick={clearInput} href={`/${movie?.id}`}>
-                <div className="flex items-start self-stretch p-2 gap-4 rounded-[8px] hover:bg-gray-500 transition-all ease-in-out w-[550px]">
+                <div className="gradient">
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                     width={67}
@@ -106,7 +107,7 @@ const SearchInput = () => {
               className="flex justify-center items-center gap-3"
             >
               <p>See all results for</p>
-              {searchValue}
+              &quot;{searchValue}&quot;
             </div>
           </Link>
         </div>

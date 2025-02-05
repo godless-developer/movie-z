@@ -30,8 +30,8 @@ export default async function page5({
   const MoreThis = await MoreThisLike.json();
   console.log(MoreThis);
   return (
-    <div className=" flex flex-col items-center justify-center mt-8 w-[1260px]">
-      <div className="w-[1090px] h-14 ">
+    <div className=" flex flex-col items-center justify-center mt-8 w-[1260px] h-[900px]">
+      <div className="w-[1090px] h-14 mb-4">
         <p className="text-[24px]">More Like This</p>
       </div>
       <div className="flex gap-5 ml-[70px] flex-wrap items-center justify-center w-full">
@@ -76,7 +76,7 @@ export default async function page5({
             );
           })}
       </div>
-      <Pagination className="ml-[475px] mt-10">
+      <Pagination className="ml-[495px] mt-5">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="#" />
