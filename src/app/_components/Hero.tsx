@@ -15,18 +15,8 @@ import { TrailerDialog } from "./TrailerDialog";
 export const Hero = async () => {
   const hero = "/movie/now_playing?language=en-US&page=1";
   const heroMovies = await fetchData(hero);
-  const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${heroMovies.results.map(
-      (movie: MovieTypes) => movie.id
-    )}/videos?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  const comeTrailer = await response.json();
+  
+  
   return (
     <div className="mt-[0px]">
       <div className="  flex flex-wrap gap-6 justify-center mt-6 w-[100vw]">
