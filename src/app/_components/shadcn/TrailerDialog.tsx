@@ -6,7 +6,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import { TOKEN } from "../utils/constants";
+import { TOKEN } from "../../utils/constants";
 
 export const TrailerDialog = async ({ movieId }: { movieId: number }) => {
   const response = await fetch(
@@ -35,8 +35,8 @@ export const TrailerDialog = async ({ movieId }: { movieId: number }) => {
         <DialogContent>
           <iframe
             src={`https://www.youtube.com/embed/${comeTrailer.results[0].key}`}
-            width={450}
-            height={261}
+            width={520}
+            height={280}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             title={comeTrailer.results[0].name}
             allowFullScreen

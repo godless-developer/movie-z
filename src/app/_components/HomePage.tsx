@@ -1,18 +1,17 @@
-import { UpComingMovies } from "./UpComingMovies";
-import { PopularMovies } from "./PopularMovies";
-import { TopRatedMovies } from "./TopRatedMovies";
+import { UpComingMovies } from "./HomeMovies/UpComingMovies";
+import { PopularMovies } from "./HomeMovies/PopularMovies";
+import { TopRatedMovies } from "./HomeMovies/TopRatedMovies";
+import { CarouselPlugin } from "./Hero/Hero";
 
-import { Hero } from "./Hero";
-
-export const HomePage = () => {
+export default async function HomePage() {
   return (
     <div>
       <div className="flex flex-col items-center">
-        <Hero />
+        <CarouselPlugin />
         <UpComingMovies />
         <PopularMovies />
         <TopRatedMovies />
       </div>
     </div>
   );
-};
+}

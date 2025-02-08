@@ -1,8 +1,8 @@
-import { HomePage } from "./_components/HomePage";
+import HomePage from "./_components/HomePage";
 
 export default function Home() {
   return (
-    <div className="absolute top-0">
+    <div>
       <HomePage />
     </div>
   );

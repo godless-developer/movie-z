@@ -4,3 +4,11 @@ export const TOKEN =
 export const BaseURL = "https://api.themoviedb.org/3";
 
 export const ConImg = "https://image.tmdb.org/t/p/";
+
+const Option = {
+  headers: {
+    Authorization: `Bearer ${TOKEN}`,
+    "Content-Type": "application/json",
+  },
+};
+export default Option;

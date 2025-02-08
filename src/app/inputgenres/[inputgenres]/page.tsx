@@ -1,5 +1,5 @@
-import { TOKEN } from "@/app/utils/constants";
-import { Genres, MovieTypes } from "@/app/utils/types";
+import Option, { BaseURL, ConImg } from "@/app/utils/constants";
+import { MovieTypes } from "@/app/utils/types";
 import { Pagination } from "@/components/ui/pagination";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,28 +10,17 @@ export default async function page3({
   params: { inputgenres: string };
 }) {
   const genresData = await fetch(
-    `https://api.themoviedb.org/3/genre/movie/list?language=en`,
-    {
-      headers: {
-        Authorization: `bearer  ${TOKEN}`,
-        "Content-type": "application/json",
-      },
-    }
+    `${BaseURL}/genre/movie/list?language=en`,
+    Option
   );
   const datagenres = await genresData.json();
-  console.log(datagenres);
 
   const genresAllData = await fetch(
-    `https://api.themoviedb.org/3/search/movie?query=${inputgenres}&language=en-US&page=1`,
-    {
-      headers: {
-        Authorization: `bearer  ${TOKEN}`,
-        "Content-type": "application/json",
-      },
-    }
+    `${BaseURL}/search/movie?query=${inputgenres}&language=en-US&page=1`,
+    Option
   );
   const dataAllgenres = await genresAllData.json();
-  console.log(dataAllgenres);
+
   return (
     <div className="w-[1440px] h-full flex flex-col items-center mt-5">
       <div className="w-[1280px] h-full flex flex-col items-start gap-8">
@@ -53,7 +42,7 @@ export default async function page3({
                     <Link key={index} href={`/${movie.id}`}>
                       <div className="rounded-[8px] overflow-hidden w-[165px] h-[340px] flex flex-col items-start cursor-pointer">
                         <Image
-                          src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                          src={`${ConImg}original/${movie?.poster_path}`}
                           alt={`Poster of ${movie?.original_title}`}
                           width={500}
                           height={750}
@@ -101,7 +90,7 @@ export default async function page3({
               </p>
             </div>
             <div className="w-[387px] flex items-start content-start gap-4 self-stretch flex-wrap">
-              {datagenres.genres.map((genre: Genres, index: number) => {
+              {datagenres.genres.map((genre: MovieTypes, index: number) => {
                 return (
                   <div
                     key={index}

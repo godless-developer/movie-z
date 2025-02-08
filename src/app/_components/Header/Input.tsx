@@ -2,13 +2,12 @@
 import { useState } from "react";
 import { ArrowRight, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
-
 import Image from "next/image";
 import Link from "next/link";
-
-import Fetchdata from "../utils/inputData";
-import { MovieTypes } from "../utils/types";
-import "./hi.css";
+import Fetchdata from "../../utils/inputData";
+import { MovieTypes } from "../../utils/types";
+import "./Input.css";
+import { ConImg } from "@/app/utils/constants";
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -53,10 +52,14 @@ const SearchInput = () => {
           {searchResults
             ?.slice(0, 5)
             .map((movie: MovieTypes, index: number) => (
-              <Link key={index} onClick={clearInput} href={`/${movie?.id}`}>
+              <Link
+                key={index}
+                onClick={clearInput}
+                href={`/catagory/${movie?.id}`}
+              >
                 <div className="gradient">
                   <Image
-                    src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                    src={`${ConImg}original/${movie?.poster_path}`}
                     width={67}
                     height={100}
                     alt=""

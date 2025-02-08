@@ -1,4 +1,4 @@
-import { BaseURL, TOKEN } from "../utils/constants";
+import { BaseURL, TOKEN } from "../../utils/constants";
 
 export async function fetchData(endpoint: string) {
   const response = await fetch(
@@ -12,6 +12,5 @@ export async function fetchData(endpoint: string) {
     }
   );
   const data = await response.json();
-
   return data;
 }

@@ -15,7 +15,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { TOKEN } from "@/app/utils/constants";
+import Option, { BaseURL, ConImg } from "@/app/utils/constants";
 
 export default function ToggleGroupDemo() {
   const [movies, setMovies] = React.useState<{
@@ -35,13 +35,8 @@ export default function ToggleGroupDemo() {
   React.useEffect(() => {
     const getDatas = async () => {
       const datas = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?language=en&with_genres=${genreIds}&page=${page}`,
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            "Content-Type": "application/json",
-          },
-        }
+        `${BaseURL}/discover/movie?language=en&with_genres=${genreIds}&page=${page}`,
+        Option
       );
       const data = await datas.json();
       setMovies(data || []);
@@ -53,13 +48,8 @@ export default function ToggleGroupDemo() {
   React.useEffect(() => {
     const getDatass = async () => {
       const responses = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?language=en`,
-        {
-          headers: {
-            Authorization: `Bearer ${TOKEN}`,
-            "Content-Type": "application/json",
-          },
-        }
+        `${BaseURL}/genre/movie/list?language=en`,
+        Option
       );
       const dataGenre = await responses.json();
       setGenres(dataGenre.genres || []);
@@ -151,10 +141,10 @@ export default function ToggleGroupDemo() {
             <div className="w-[806px] h-full flex flex-wrap items-start self-stretch gap-8">
               {movies?.results.map((movie: PageType, index: number) => {
                 return (
-                  <Link key={movie.id} href={`/${movie.id}`}>
+                  <Link key={movie.id} href={`/catagory/${movie.id}`}>
                     <div className="rounded-[8px] overflow-hidden w-[165px] h-[330px] flex flex-col items-start cursor-pointer">
                       <Image
-                        src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                        src={`${ConImg}original/${movie?.poster_path}`}
                         alt={`Poster of ${movie?.original_title}`}
                         width={500}
                         height={750}

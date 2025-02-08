@@ -1,8 +1,3 @@
-export type Genre = {
-  id: number;
-  name: string;
-};
-
 export type MovieTypes = {
   adult: boolean;
   backdrop_path: string;
@@ -20,11 +15,7 @@ export type MovieTypes = {
   name: string;
   department: string;
 };
-export type Genres = {
-  name: string;
-  id: number;
-  total_results: number;
-};
+
 export type Trailer = {
   name: string;
   id: number;

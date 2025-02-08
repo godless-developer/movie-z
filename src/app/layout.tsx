@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "./_components/Header";
-import { BottomNews } from "./_components/BottomNews";
-import { Hi } from "./_components/Hi";
+import { Header } from "./_components/Header/Header";
+import { Footer } from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "TUKA.COM",
@@ -25,12 +24,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <Hi />
           {children}
-          <BottomNews />
         </ThemeProvider>
+        <Footer />
       </body>
-      <link rel="icon" href="./public/favicon.ico" />
+      <link rel="icon" href="@/public/star.png" />
     </html>
   );
 }

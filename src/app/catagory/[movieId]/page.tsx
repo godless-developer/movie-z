@@ -1,14 +1,18 @@
-import { TOKEN } from "@/app/utils/constants";
+import Option, { BaseURL, ConImg } from "@/app/utils/constants";
+import formatVoteAverage from "@/app/utils/percent";
 import { MovieTypes, Trailer } from "@/app/utils/types";
+import formatVoteAverage2 from "@/app/utils/vote";
 import { Button } from "@/components/ui/button";
+
+import Image from "next/image";
+import Link from "next/link";
+
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import Image from "next/image";
-import Link from "next/link";
 
 export default async function page1({
   params: { movieId },
@@ -16,75 +20,37 @@ export default async function page1({
   params: { movieId: string };
 }) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+    `${BaseURL}/movie/${movieId}?language=en-US`,
+    Option
   );
+  const data = await response.json();
+
   const responseStar = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+    `${BaseURL}/movie/${movieId}/credits?language=en-US`,
+    Option
   );
+  const dataStar = await responseStar.json();
+
   const responseTrailer = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+    `${BaseURL}/movie/${movieId}/videos?language=en-US`,
+    Option
   );
+  const dataTrailer = await responseTrailer.json();
 
   const MoreThisLike = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+    `${BaseURL}/movie/${movieId}/similar?language=en-US&page=1`,
+    Option
   );
+  const MoreThis = await MoreThisLike.json();
 
   const trailers = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-    {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    }
+    `${BaseURL}/movie/${movieId}/videos?language=en-US`,
+    Option
   );
   const comeTrailer = await trailers.json();
 
-  const MoreThis = await MoreThisLike.json();
-  console.log(MoreThis);
-
-  const dataTrailer = await responseTrailer.json();
-  console.log(dataTrailer);
-
-  const data = await response.json();
-  console.log(data);
-
-  function formatVoteAverage(vote: number) {
-    const hours = Math.floor(vote / 60);
-    const minutes = vote % 60;
-    return `${hours}h ${minutes}min`;
-  }
-  function formatVoteAverage2(vote: number) {
-    return (Math.floor(vote * 10) / 10).toString().replace(".", ".");
-  }
-
-  const dataStar = await responseStar.json();
-  console.log(dataStar);
-
+  formatVoteAverage;
+  formatVoteAverage2;
   return (
     <div className="w-[1080px] z-10">
       <div className="mt-8">
@@ -128,7 +94,7 @@ export default async function page1({
         </div>
         <div className="flex gap-4">
           <Image
-            src={"https://image.tmdb.org/t/p/w500" + data.poster_path}
+            src={`${ConImg}w500` + data.poster_path}
             width={280}
             height={400}
             alt=""
@@ -138,7 +104,7 @@ export default async function page1({
             <div
               className="absolute inset-0 bg-black opacity-55 top-[0px] left-[0px] z-10"
               style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original${data?.poster_path})`,
+                backgroundImage: `url(${ConImg}original${data?.poster_path})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -260,7 +226,7 @@ export default async function page1({
           <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-center">
             <p className=" cursor-pointer text-[24px]">More Like This</p>
             <button className="flex items-center justify-center gap-2">
-              <Link href={`/morelikethis/${movieId}`}>See more</Link>
+              <Link href={`SeeMore/morelikethis/${movieId}`}>See more</Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -286,7 +252,7 @@ export default async function page1({
                 <Link key={index} href={`${movie.id}`}>
                   <div className="rounded-[8px] overflow-hidden w-[205px] h-[410px] flex flex-col items-start cursor-pointer">
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
+                      src={`${ConImg}original/${movie?.poster_path}`}
                       alt={`Poster of ${movie?.original_title}`}
                       width={500}
                       height={750}

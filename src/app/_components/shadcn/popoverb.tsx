@@ -1,7 +1,6 @@
 "use client";
 
-import { TOKEN } from "@/app/utils/constants";
-import { Genres } from "@/app/utils/types";
+import Option, { BaseURL } from "@/app/utils/constants";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -11,32 +10,26 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useState, useEffect } from "react";
+import { MovieTypes } from "@/app/utils/types";
 
 export function PopoverDemo() {
   const [open, setOpen] = useState(false);
-  const [genres, setGenres] = useState<Genres[]>([]); // State for storing genres
+  const [genres, setGenres] = useState<MovieTypes[]>([]); // State for storing genres
   const [loading, setLoading] = useState(true); // State for loading status
 
   useEffect(() => {
-    // Fetching movie genres
     const fetchGenres = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/genre/movie/list?language=en`,
-          {
-            headers: {
-              Authorization: `Bearer ${TOKEN}`,
-              "Content-Type": "application/json",
-            },
-          }
+          `${BaseURL}/genre/movie/list?language=en`,
+          Option
         );
-
         const data = await response.json();
-        setGenres(data.genres || []); // Setting genres data
+        setGenres(data.genres || []);
       } catch (error) {
         console.error("Error fetching genres:", error);
       } finally {
-        setLoading(false); // Set loading to false once the request is done
+        setLoading(false);
       }
     };
 
@@ -78,13 +71,13 @@ export function PopoverDemo() {
           </div>
           <div className="flex flex-wrap gap-[18px]">
             {loading ? (
-              <p>Loading genres...</p> // Loading state
+              <p>Loading genres...</p>
             ) : (
               genres?.map((movie, index) => (
                 <Link
                   key={index}
-                  onClick={() => setOpen(false)} // Close popover when genre is selected
-                  href={`/genres/${movie.id}/`}
+                  onClick={() => setOpen(false)}
+                  href={`/genres/14?genreIds=${movie.id}`}
                 >
                   <button className="flex items-center gap-[8px] text-xs rounded-[20px] border-solid border-slate-500 border-[0.2px] px-[10px] py-[2px] font-semibold">
                     {movie.name}

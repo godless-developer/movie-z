@@ -1,18 +1,9 @@
 import Image from "next/image";
+import { TOKEN } from "../../utils/constants";
 import Link from "next/link";
-import { MovieTypes } from "../utils/types";
-import { TOKEN } from "../utils/constants";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { MovieTypes } from "../../utils/types";
 
-export default async function upcoming() {
+export const UpComingMovies = async () => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
     {
@@ -25,18 +16,34 @@ export default async function upcoming() {
 
   const data = await response.json();
   console.log(data);
-
   return (
     <div>
       <div className="w-[1260px]">
         <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-start">
           <p className=" cursor-pointer text-[24px]">Upcoming</p>
+          <button className="flex items-center justify-center gap-2">
+            <Link href={"/SeeMore/upcoming"}>See more</Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
-      <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-full justify-center ">
+      <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-[910px] justify-center ">
         {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => {
           return (
-            <Link href={`/${movie.id}`} key={index}>
+            <Link href={`catagory/${movie.id}`} key={index}>
               <div
                 key={index}
                 className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer "
@@ -47,7 +54,7 @@ export default async function upcoming() {
                   width={500}
                   height={750}
                 />
-                <div className="bg-[#27272a] flex p-2 flex-col items-start self-stretch  h-full">
+                <div className="bg-secondary flex p-2 flex-col items-start self-stretch  h-full">
                   <div className="flex items-center gap-[2px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -76,30 +83,6 @@ export default async function upcoming() {
           );
         })}
       </div>
-      <Pagination className="ml-[470px] mt-10">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
     </div>
   );
-}
+};
