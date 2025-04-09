@@ -15,10 +15,11 @@ import {
 } from "@/components/ui/dialog";
 
 export default async function page1({
-  params: { movieId },
+  params,
 }: {
   params: { movieId: string };
 }) {
+  const { movieId } = await params;
   const response = await fetch(
     `${BaseURL}/movie/${movieId}?language=en-US`,
     Option
@@ -49,8 +50,6 @@ export default async function page1({
   );
   const comeTrailer = await trailers.json();
 
-  formatVoteAverage;
-  formatVoteAverage2;
   return (
     <div className="w-[1080px] z-10">
       <div className="mt-8">
