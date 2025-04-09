@@ -10,7 +10,9 @@ interface Props {
 }
 
 export default async function page3(props: Props) {
-  const inputgenres = await props.params;
+  const params = await props.params;
+  const inputgenres = params.inputgenres;
+
   const genresData = await fetch(
     `${BaseURL}/genre/movie/list?language=en`,
     Option
