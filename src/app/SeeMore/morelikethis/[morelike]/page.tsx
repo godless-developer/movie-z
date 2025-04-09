@@ -11,12 +11,14 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+interface Props {
+  params: Promise<{
+    morelike: string;
+  }>;
+}
 
-export default async function page5({
-  params: { morelike },
-}: {
-  params: { morelike: string };
-}) {
+export default async function page5(props: Props) {
+  const morelike = await props.params;
   const MoreThisLike = await fetch(
     `https://api.themoviedb.org/3/movie/${morelike}/similar?language=en-US&page=1`,
     {

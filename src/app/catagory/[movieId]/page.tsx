@@ -13,13 +13,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+interface Props {
+  params: Promise<{ movieId: string }>;
+}
 
-export default async function page1({
-  params,
-}: {
-  params: { movieId: string };
-}) {
-  const { movieId } = await params;
+export default async function page1(props: Props) {
+  const params = await props.params;
+  const movieId = params.movieId;
   const response = await fetch(
     `${BaseURL}/movie/${movieId}?language=en-US`,
     Option

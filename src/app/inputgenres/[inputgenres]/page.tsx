@@ -3,12 +3,14 @@ import { MovieTypes } from "@/app/utils/types";
 import { Pagination } from "@/components/ui/pagination";
 import Image from "next/image";
 import Link from "next/link";
+interface Props {
+  params: Promise<{
+    inputgenres: string;
+  }>;
+}
 
-export default async function page3({
-  params: { inputgenres },
-}: {
-  params: { inputgenres: string };
-}) {
+export default async function page3(props: Props) {
+  const inputgenres = await props.params;
   const genresData = await fetch(
     `${BaseURL}/genre/movie/list?language=en`,
     Option
