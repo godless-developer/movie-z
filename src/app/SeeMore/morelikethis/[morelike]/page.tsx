@@ -18,7 +18,8 @@ interface Props {
 }
 
 export default async function page5(props: Props) {
-  const morelike = await props.params;
+  const params = await props.params;
+  const morelike = params.morelike;
   const MoreThisLike = await fetch(
     `https://api.themoviedb.org/3/movie/${morelike}/similar?language=en-US&page=1`,
     {
@@ -30,6 +31,7 @@ export default async function page5(props: Props) {
   );
 
   const MoreThis = await MoreThisLike.json();
+  console.log(MoreThisLike);
   console.log(MoreThis);
   return (
     <div className=" flex flex-col items-center justify-center mt-8 w-[1260px] h-[900px]">
@@ -41,7 +43,7 @@ export default async function page5(props: Props) {
           ?.slice(0, 10)
           .map((movie: MovieTypes, index: number) => {
             return (
-              <Link key={index} href={`/${movie.id}`}>
+              <Link key={index} href={`/catagory/${movie.id}`}>
                 <div className="rounded-[8px] overflow-hidden w-[225px] h-[430px] flex flex-col items-start cursor-pointer">
                   <Image
                     src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}

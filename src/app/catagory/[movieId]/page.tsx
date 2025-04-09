@@ -226,7 +226,7 @@ export default async function page1(props: Props) {
           <div className="w-full h-[36px] mt-5 mb-5 flex justify-between items-center">
             <p className=" cursor-pointer text-[24px]">More Like This</p>
             <button className="flex items-center justify-center gap-2">
-              <Link href={`SeeMore/morelikethis/${movieId}`}>See more</Link>
+              <Link href={`/SeeMore/morelikethis/${movieId}`}>See more</Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"

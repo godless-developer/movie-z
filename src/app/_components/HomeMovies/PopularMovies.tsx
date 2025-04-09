@@ -42,7 +42,7 @@ export const PopularMovies = async () => {
       </div>
       <div className=" mx-auto flex items-start content-start gap-8 self-stretch flex-wrap w-full max-w-[1290px] h-[910px]">
         {data.results.slice(0, 10).map((movie: MovieTypes, index: number) => (
-          <Link key={index} href={`catagory/${movie.id}`}>
+          <Link key={index} href={`/catagory/${movie.id}`}>
             <div className="rounded-[8px] overflow-hidden w-[230px] h-[439px] flex flex-col items-start cursor-pointer">
               <Image
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
