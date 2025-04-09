@@ -30,7 +30,6 @@ export function CarouselPlugin() {
       );
       const data = await response.json();
       setMovies(data.results || []);
-      console.log("zuraggg", data);
     }
     fetchMovies();
   }, []);

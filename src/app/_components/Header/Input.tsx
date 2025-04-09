@@ -62,8 +62,9 @@ const SearchInput = () => {
                     src={`${ConImg}original/${movie?.poster_path}`}
                     width={67}
                     height={100}
-                    alt=""
+                    alt="input"
                     className="rounded-[6px] cursor-pointer"
+                    priority
                   />
                   <div className="flex flex-col items-start gap-4 w-[100%]">
                     <h2 className="font-bold text-[20px]">

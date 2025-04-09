@@ -46,6 +46,7 @@ export default async function page3({
                           alt={`Poster of ${movie?.original_title}`}
                           width={500}
                           height={750}
+                          priority
                         />
                         <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
                           <div className="flex gap-[2px] items-center">

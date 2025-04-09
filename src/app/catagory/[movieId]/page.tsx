@@ -97,7 +97,8 @@ export default async function page1({
             src={`${ConImg}w500` + data.poster_path}
             width={280}
             height={400}
-            alt=""
+            alt="priority"
+            priority
           />
           <div className="w-[760px] h-[428px] bg-cover bg-center bg-no-repeat rounded-sm relative ">
             <div className="absolute inset-0 "></div>
@@ -256,6 +257,7 @@ export default async function page1({
                       alt={`Poster of ${movie?.original_title}`}
                       width={500}
                       height={750}
+                      priority
                     />
                     <div className="bg-secondary flex p-2 flex-col items-start self-stretch h-full">
                       <div className="flex items-center gap-[2px]">

@@ -15,7 +15,6 @@ export const UpComingMovies = async () => {
   );
 
   const data = await response.json();
-  console.log(data);
   return (
     <div>
       <div className="w-[1260px]">
@@ -53,6 +52,7 @@ export const UpComingMovies = async () => {
                   alt={`Poster of ${movie?.original_title}`}
                   width={500}
                   height={750}
+                  priority
                 />
                 <div className="bg-secondary flex p-2 flex-col items-start self-stretch  h-full">
                   <div className="flex items-center gap-[2px]">
